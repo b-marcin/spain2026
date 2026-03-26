@@ -331,54 +331,122 @@
   <p class="section-label" style="margin-top:2rem;">🗺 Getting around — key distances</p>
   <p style="font-size:11px;color:var(--color-text-tertiary);margin-bottom:12px;">Both routes require a car — this is why renting is essential for the trip.</p>
 
-  <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:1.5rem;">
+  <div style="background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;margin-bottom:1.5rem;">
 
-    <div style="background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;">
-      <div style="padding:10px 14px 8px;border-bottom:0.5px solid var(--color-border-tertiary);display:flex;justify-content:space-between;align-items:center;">
-        <div>
-          <span style="font-size:12px;font-weight:500;color:var(--color-text-primary);">✈ Málaga Airport → Frigiliana</span>
-          <span style="font-size:11px;color:var(--color-text-tertiary);margin-left:8px;">arrival day drive</span>
-        </div>
-        <span style="font-size:12px;font-weight:500;color:var(--color-text-info);">~75 km · ~60 min</span>
+    <svg viewBox="0 0 640 310" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+      <defs>
+        <linearGradient id="seaGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#b8d8e8"/>
+          <stop offset="100%" stop-color="#d4eaf5"/>
+        </linearGradient>
+        <linearGradient id="landGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#e8ede0"/>
+          <stop offset="100%" stop-color="#d8e6c8"/>
+        </linearGradient>
+        <linearGradient id="hillGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#c8d8a8"/>
+          <stop offset="100%" stop-color="#b8c898"/>
+        </linearGradient>
+        <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="1" stdDeviation="2" flood-opacity="0.15"/>
+        </filter>
+        <marker id="arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L6,3 z" fill="#1a4a6b" opacity="0.7"/>
+        </marker>
+        <marker id="arrow2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L6,3 z" fill="#0f6e56" opacity="0.8"/>
+        </marker>
+      </defs>
+
+      <!-- Sea background -->
+      <rect width="640" height="310" fill="url(#seaGrad)"/>
+
+      <!-- Land mass — Costa del Sol rough shape -->
+      <path d="M0,310 L0,200 Q30,185 60,190 Q90,195 110,180 Q130,165 160,170 Q190,175 210,160 Q240,145 270,155 Q300,165 320,150 Q340,135 360,140 Q390,145 420,130 Q450,118 480,125 Q510,132 530,120 Q560,110 590,115 Q620,118 640,112 L640,310 Z" fill="url(#landGrad)"/>
+
+      <!-- Hills / terrain suggestion inland -->
+      <path d="M100,180 Q130,155 160,165 Q190,170 220,150 Q250,132 280,142 Q310,150 340,132 Q370,115 410,122 Q440,108 470,116 Q500,122 530,110 Q560,100 590,106 L640,112 L640,180 Q600,175 560,180 Q520,178 490,172 Q450,165 410,170 Q370,168 340,175 Q300,178 260,172 Q220,168 190,175 Q150,180 120,185 Z" fill="url(#hillGrad)" opacity="0.5"/>
+
+      <!-- Coastline detail -->
+      <path d="M0,200 Q30,185 60,190 Q90,195 110,180 Q130,165 160,170 Q190,175 210,160 Q240,145 270,155 Q300,165 320,150 Q340,135 360,140 Q390,145 420,130 Q450,118 480,125 Q510,132 530,120 Q560,110 590,115 Q620,118 640,112" fill="none" stroke="#7ab0c8" stroke-width="1.5" opacity="0.6"/>
+
+      <!-- Sea label -->
+      <text x="320" y="268" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" fill="#5a8fa8" letter-spacing="3" opacity="0.7">MEDITERRANEAN SEA</text>
+
+      <!-- A7 Motorway (Málaga to east, roughly following coast) -->
+      <path d="M118,163 Q160,155 200,148 Q250,138 290,140 Q330,140 360,132 Q390,126 415,120" fill="none" stroke="#e8c87a" stroke-width="3.5" opacity="0.6"/>
+      <path d="M118,163 Q160,155 200,148 Q250,138 290,140 Q330,140 360,132 Q390,126 415,120" fill="none" stroke="#d4a830" stroke-width="1" stroke-dasharray="none" opacity="0.8"/>
+      <text x="245" y="128" font-family="DM Sans, sans-serif" font-size="8.5" fill="#8a6a10" letter-spacing="0.5" transform="rotate(-4,245,128)">A-7 motorway</text>
+
+      <!-- ROUTE 1: Airport to Frigiliana (dashed animated line) -->
+      <path d="M118,163 Q160,155 200,148 Q250,138 290,140 Q330,140 356,133 Q380,126 413,120" fill="none" stroke="#1a4a6b" stroke-width="2.5" stroke-dasharray="7,4" opacity="0.9" marker-end="url(#arrow)"/>
+
+      <!-- ROUTE 2: Frigiliana to Nerja -->
+      <path d="M415,120 Q430,125 443,128" fill="none" stroke="#0f6e56" stroke-width="2.5" stroke-dasharray="5,3" opacity="0.9" marker-end="url(#arrow2)"/>
+
+      <!-- AIRPORT marker -->
+      <g filter="url(#shadow)">
+        <circle cx="118" cy="163" r="16" fill="#1a4a6b"/>
+        <text x="118" y="158" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="12" fill="white">✈</text>
+        <text x="118" y="169" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="6.5" fill="rgba(255,255,255,0.85)" letter-spacing="0.3">AGP</text>
+      </g>
+      <rect x="50" y="180" width="136" height="28" rx="5" fill="white" opacity="0.92" filter="url(#shadow)"/>
+      <text x="118" y="192" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" font-weight="500" fill="#1a1a18">Málaga Airport</text>
+      <text x="118" y="203" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="8" fill="#8a8a80">pick up rental car here</text>
+
+      <!-- FRIGILIANA marker -->
+      <g filter="url(#shadow)">
+        <circle cx="415" cy="120" r="14" fill="#0f6e56"/>
+        <text x="415" y="125" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="white" font-weight="600">F</text>
+      </g>
+      <rect x="352" y="96" width="126" height="18" rx="4" fill="white" opacity="0.92" filter="url(#shadow)"/>
+      <text x="415" y="109" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" font-weight="500" fill="#1a1a18">Frigiliana 🏡 stay</text>
+
+      <!-- NERJA marker -->
+      <g filter="url(#shadow)">
+        <circle cx="445" cy="128" r="14" fill="#1d6fa4"/>
+        <text x="445" y="133" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" fill="white" font-weight="600">N</text>
+      </g>
+      <rect x="390" y="143" width="110" height="18" rx="4" fill="white" opacity="0.92" filter="url(#shadow)"/>
+      <text x="445" y="156" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="9" font-weight="500" fill="#1a1a18">Nerja 🏖 beach</text>
+
+      <!-- Distance label Route 1 -->
+      <rect x="210" y="130" width="100" height="22" rx="5" fill="white" opacity="0.93" filter="url(#shadow)"/>
+      <text x="260" y="141" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="8" font-weight="600" fill="#1a4a6b">~75 km · ~60 min</text>
+      <text x="260" y="150" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="7.5" fill="#8a8a80">Airport → Frigiliana</text>
+
+      <!-- Distance label Route 2 -->
+      <rect x="404" y="162" width="88" height="22" rx="5" fill="white" opacity="0.93" filter="url(#shadow)"/>
+      <text x="448" y="173" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="8" font-weight="600" fill="#0f6e56">~7 km · ~10 min</text>
+      <text x="448" y="182" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="7.5" fill="#8a8a80">Frigiliana → Nerja</text>
+
+      <!-- Málaga city label -->
+      <text x="80" y="152" font-family="DM Sans, sans-serif" font-size="8" fill="#4a4a44" opacity="0.6">Málaga</text>
+
+      <!-- Compass rose -->
+      <g transform="translate(600,40)">
+        <circle cx="0" cy="0" r="12" fill="white" opacity="0.8"/>
+        <text x="0" y="-4" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="8" font-weight="600" fill="#1a1a18">N</text>
+        <path d="M0,-10 L2,-2 L0,0 L-2,-2 Z" fill="#1a4a6b"/>
+        <path d="M0,10 L2,2 L0,0 L-2,2 Z" fill="#aaa"/>
+      </g>
+    </svg>
+
+    <!-- Legend + links -->
+    <div style="padding:10px 14px;border-top:0.5px solid var(--color-border-tertiary);display:flex;gap:16px;align-items:center;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:5px;">
+        <div style="width:20px;height:2px;background:#1a4a6b;border-top:2px dashed #1a4a6b;"></div>
+        <span style="font-size:11px;color:var(--color-text-secondary);">Airport → Frigiliana (~60 min)</span>
       </div>
-      <a href="https://www.google.com/maps/dir/Malaga+Airport,+Spain/Frigiliana,+Malaga,+Spain" target="_blank" style="display:block;position:relative;">
-        <img src="https://maps.geoapify.com/v1/staticmap?style=osm-bright&width=640&height=220&marker=lonlat:-4.4939,36.6767;type:material;color:%231a4a6b;size:large|lonlat:-3.8947,36.7909;type:material;color:%230f6e56;size:large&geometry=polyline:yiuaFxdvLyCyFpBaGcM}UeGqIkMyGiR}DiYcBka@iBah@hBqb@nDy^tHwYtL_TpPmNzT}HhYaClb@o@hf@bBxd@fFhZvJ~RlMbLnQ|EtUaCxW_InXcOjVuUtSa_@|NamAxGomB~@sm@lBag@pHq_@tNqXbTiPxZ}GjZgBl[fCh]rJz[`SfXxXnSpZ}FhR-3.8947,36.7909&apiKey=placeholder" 
-             style="width:100%;height:220px;object-fit:cover;display:block;filter:saturate(0.9);" 
-             alt="Map: Málaga Airport to Frigiliana"
-             onerror="this.parentElement.innerHTML='<div style=\'height:140px;background:linear-gradient(135deg,#e8f0f8,#dce8d4);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;\'><div style=\'display:flex;align-items:center;gap:16px;font-size:13px;\'><span style=\'background:#1a4a6b;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;\'>A</span><div style=\'height:2px;width:80px;background:repeating-linear-gradient(90deg,#1a4a6b 0,#1a4a6b 6px,transparent 6px,transparent 12px);\'></div><span style=\'background:#0f6e56;color:white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;\'>B</span></div><a href=\'https://www.google.com/maps/dir/Malaga+Airport,+Spain/Frigiliana,+Malaga,+Spain\' target=\'_blank\' style=\'font-size:11px;color:#1d6fa4;text-decoration:none;\'>Open in Google Maps ↗</a></div>'"/>
-      </a>
-      <div style="padding:8px 14px;display:flex;justify-content:space-between;align-items:center;">
-        <span style="font-size:11px;color:var(--color-text-tertiary);">Pick up rental car at airport · drive east along A-7</span>
-        <a href="https://www.google.com/maps/dir/Malaga+Airport,+Spain/Frigiliana,+Malaga,+Spain" target="_blank" style="font-size:11px;color:var(--color-text-info);text-decoration:none;white-space:nowrap;">Open in Maps ↗</a>
+      <div style="display:flex;align-items:center;gap:5px;">
+        <div style="width:20px;height:2px;background:#0f6e56;border-top:2px dashed #0f6e56;"></div>
+        <span style="font-size:11px;color:var(--color-text-secondary);">Frigiliana → Nerja (~10 min)</span>
+      </div>
+      <div style="margin-left:auto;display:flex;gap:12px;">
+        <a href="https://www.google.com/maps/dir/Malaga+Airport/Frigiliana,+Malaga" target="_blank" style="font-size:11px;color:var(--color-text-info);text-decoration:none;">Route 1 in Maps ↗</a>
+        <a href="https://www.google.com/maps/dir/Frigiliana,+Malaga/Nerja,+Malaga" target="_blank" style="font-size:11px;color:var(--color-text-info);text-decoration:none;">Route 2 in Maps ↗</a>
       </div>
     </div>
-
-    <div style="background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;">
-      <div style="padding:10px 14px 8px;border-bottom:0.5px solid var(--color-border-tertiary);display:flex;justify-content:space-between;align-items:center;">
-        <div>
-          <span style="font-size:12px;font-weight:500;color:var(--color-text-primary);">🏖 Frigiliana → Nerja</span>
-          <span style="font-size:11px;color:var(--color-text-tertiary);margin-left:8px;">daily trip to the beach</span>
-        </div>
-        <span style="font-size:12px;font-weight:500;color:var(--color-text-info);">~7 km · ~10 min</span>
-      </div>
-      <a href="https://www.google.com/maps/dir/Frigiliana,+Malaga,+Spain/Nerja,+Malaga,+Spain" target="_blank" style="display:block;">
-        <div style="height:160px;background:linear-gradient(135deg,#e8f0f8 0%,#dce8d4 50%,#e8f0d4 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;">
-          <div style="display:flex;align-items:center;gap:0;">
-            <div style="background:#0f6e56;color:white;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0;">F</div>
-            <div style="position:relative;width:160px;height:4px;background:repeating-linear-gradient(90deg,#0f6e56 0,#0f6e56 8px,transparent 8px,transparent 16px);margin:0 4px;">
-              <div style="position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:white;border:1px solid var(--color-border-tertiary);border-radius:100px;padding:2px 8px;font-size:10px;color:var(--color-text-secondary);white-space:nowrap;">7 km · 10 min</div>
-            </div>
-            <div style="background:#1a4a6b;color:white;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0;">N</div>
-          </div>
-          <div style="font-size:11px;color:var(--color-text-secondary);">Frigiliana &nbsp;→&nbsp; Nerja</div>
-        </div>
-      </a>
-      <div style="padding:8px 14px;display:flex;justify-content:space-between;align-items:center;">
-        <span style="font-size:11px;color:var(--color-text-tertiary);">Quick downhill drive · beaches, restaurants, Balcón de Europa</span>
-        <a href="https://www.google.com/maps/dir/Frigiliana,+Malaga,+Spain/Nerja,+Malaga,+Spain" target="_blank" style="font-size:11px;color:var(--color-text-info);text-decoration:none;white-space:nowrap;">Open in Maps ↗</a>
-      </div>
-    </div>
-
   </div>
 
   <p class="section-label" style="margin-top:2rem;">🚗 Car rental — 7 days, price per person</p>
