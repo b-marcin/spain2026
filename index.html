@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nerja Holiday 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap');
+  :root {
+    --color-background-primary: #ffffff;
+    --color-background-secondary: #f7f7f5;
+    --color-text-primary: #1a1a18;
+    --color-text-secondary: #4a4a44;
+    --color-text-tertiary: #8a8a80;
+    --color-text-info: #1d6fa4;
+    --color-border-tertiary: #e5e5de;
+    --color-border-secondary: #d0d0c8;
+    --border-radius-lg: 12px;
+    --border-radius-md: 8px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--color-background-primary); color: var(--color-text-primary); max-width: 700px; margin: 0 auto; }
+
+  .hero { background: linear-gradient(160deg, #1a4a6b 0%, #0f6e56 60%, #1d9e75 100%); padding: 3rem 2rem 2rem; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 80%, rgba(255,200,100,0.18) 0%, transparent 60%), radial-gradient(ellipse at 80% 20%, rgba(255,150,80,0.12) 0%, transparent 50%); }
+  .hero-subtitle { font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.65); margin-bottom: 0.75rem; position: relative; }
+  .hero-title { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 600; color: #fff; line-height: 1.1; position: relative; }
+  .hero-title span { color: #fac775; }
+  .hero-dates { display: inline-block; margin-top: 1rem; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); border-radius: 100px; padding: 6px 20px; font-size: 13px; color: rgba(255,255,255,0.9); position: relative; }
+  .wave { width: 100%; height: 48px; display: block; margin-top: -2px; }
+  .section { padding: 0 1.5rem 1.5rem; }
+  .section-label { font-size: 10px; font-weight: 500; letter-spacing: 2.5px; text-transform: uppercase; color: var(--color-text-tertiary); margin: 2rem 0 1rem; }
+
+  /* FLIGHTS */
+  .flight-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .airline-block { background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); overflow: hidden; }
+  .airline-header { padding: 10px 14px 8px; border-bottom: 0.5px solid var(--color-border-tertiary); display: flex; justify-content: space-between; align-items: center; }
+  .airline-name { font-size: 12px; font-weight: 500; color: var(--color-text-primary); }
+  .airline-price-tag { font-size: 14px; font-weight: 500; color: var(--color-text-info); }
+  .flight-leg { padding: 10px 14px; }
+  .flight-leg + .flight-leg { border-top: 0.5px solid var(--color-border-tertiary); }
+  .leg-date { font-size: 10px; color: var(--color-text-tertiary); margin-bottom: 5px; letter-spacing: 0.5px; }
+  .leg-row { display: flex; align-items: center; gap: 6px; }
+  .leg-time { font-size: 20px; font-weight: 500; color: var(--color-text-primary); min-width: 52px; }
+  .leg-mid { flex: 1; text-align: center; }
+  .leg-duration { font-size: 10px; color: var(--color-text-tertiary); }
+  .leg-line { height: 0.5px; background: var(--color-border-secondary); margin: 3px 0; }
+  .leg-nonstop { font-size: 9px; color: var(--color-text-tertiary); letter-spacing: 0.5px; }
+  .airline-footer { padding: 8px 14px; border-top: 0.5px solid var(--color-border-tertiary); font-size: 11px; color: var(--color-text-tertiary); }
+  .included { color: #0f6e56; font-weight: 500; }
+  .not-included { color: #993c1d; }
+
+  /* ACCOMMODATION */
+  .accomm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .accomm-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); overflow: hidden; }
+  .accomm-card.premium { border: 1.5px solid rgba(239,159,39,0.5); }
+  .photo-strip { display: grid; grid-template-columns: 1fr 1fr 1fr; height: 100px; gap: 2px; }
+  .photo-strip img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .photo-strip-2 { display: grid; grid-template-columns: 1fr 1fr; height: 110px; gap: 2px; }
+  .photo-strip-2 img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .accomm-body { padding: 12px; }
+  .accomm-badge { display: inline-block; font-size: 10px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; padding: 3px 8px; border-radius: 100px; margin-bottom: 8px; }
+  .badge-budget { background: #e1f5ee; color: #0f6e56; }
+  .badge-premium { background: #faeeda; color: #854f0b; }
+  .accomm-name { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 600; color: var(--color-text-primary); margin-bottom: 3px; line-height: 1.3; }
+  .accomm-loc { font-size: 11px; color: var(--color-text-tertiary); margin-bottom: 8px; }
+  .accomm-features { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 10px; }
+  .feature-pill { font-size: 10px; background: var(--color-background-secondary); color: var(--color-text-secondary); border-radius: 100px; padding: 2px 8px; border: 0.5px solid var(--color-border-tertiary); }
+  .accomm-price { font-size: 20px; font-weight: 500; color: var(--color-text-primary); }
+  .accomm-price-sub { font-size: 11px; color: var(--color-text-tertiary); }
+  .accomm-link { display: inline-block; margin-top: 8px; font-size: 11px; color: var(--color-text-info); text-decoration: none; }
+  .accomm-meta { font-size: 10px; color: var(--color-text-tertiary); margin-top: 4px; line-height: 1.5; }
+
+  /* CAR */
+  .car-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .car-card { background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 14px; }
+  .car-label { font-size: 10px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-text-tertiary); margin-bottom: 6px; }
+  .car-price { font-size: 22px; font-weight: 500; color: var(--color-text-primary); }
+  .car-note { font-size: 11px; color: var(--color-text-tertiary); margin-top: 3px; }
+
+  /* TABLE */
+  .options-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .options-table th { font-size: 10px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-text-tertiary); text-align: right; padding: 6px 10px 6px 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  .options-table th:first-child { text-align: left; }
+  .options-table td { padding: 10px 10px 10px 0; text-align: right; border-bottom: 0.5px solid var(--color-border-tertiary); color: var(--color-text-secondary); font-size: 13px; }
+  .options-table td:first-child { text-align: left; color: var(--color-text-primary); }
+  .options-table tr.best td { background: rgba(29,158,117,0.06); }
+  .total-cell { font-weight: 500; color: var(--color-text-primary) !important; font-size: 14px !important; }
+  .rec-badge { font-size: 9px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; background: #e1f5ee; color: #0f6e56; border-radius: 4px; padding: 2px 6px; margin-left: 6px; vertical-align: middle; }
+  .footer-note { background: var(--color-background-secondary); border-radius: var(--border-radius-lg); padding: 14px 16px; font-size: 12px; color: var(--color-text-secondary); line-height: 1.6; margin-top: 1rem; border-left: 2px solid #1d9e75; border-top-left-radius: 0; border-bottom-left-radius: 0; }
+
+  .options-table tr.plan-row td { background: rgba(250,199,117,0.13); }
+  .plan-badge { font-size: 9px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; background: #faeeda; color: #854f0b; border-radius: 4px; padding: 2px 6px; margin-left: 6px; vertical-align: middle; }
+
+  /* DILEMMAS */
+  .dilemma-stack { display: flex; flex-direction: column; gap: 12px; }
+  .dilemma-card { background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); overflow: hidden; }
+  .dilemma-header { display: flex; align-items: center; gap: 10px; padding: 12px 14px 10px; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  .dilemma-number { width: 22px; height: 22px; border-radius: 50%; background: #1a4a6b; color: #fff; font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .dilemma-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); }
+  .dilemma-body { padding: 12px 14px; }
+  .dilemma-vs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .dilemma-option { border-radius: 8px; padding: 10px 12px; }
+  .dilemma-option.opt-a { background: #eef3f8; border: 0.5px solid #b8cfe0; }
+  .dilemma-option.opt-b { background: #f3f0f8; border: 0.5px solid #c8bede; }
+  .dilemma-option.opt-a-plan { background: #e8f5f0; border: 1.5px solid #8dcfb8; }
+  .dilemma-option.opt-b-plan { background: #fef9ed; border: 1.5px solid #f0d898; }
+  .dilemma-option-label { font-size: 9px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 5px; }
+  .dilemma-option.opt-a .dilemma-option-label { color: #1a4a6b; }
+  .dilemma-option.opt-b .dilemma-option-label { color: #5a3f8a; }
+  .dilemma-option.opt-a-plan .dilemma-option-label { color: #0f6e56; }
+  .dilemma-option.opt-b-plan .dilemma-option-label { color: #854f0b; }
+  .dilemma-option p { font-size: 11px; color: var(--color-text-secondary); line-height: 1.55; }
+  .dilemma-note { font-size: 11px; color: var(--color-text-secondary); line-height: 1.6; margin-top: 10px; padding: 9px 12px; background: rgba(26,74,107,0.06); border-radius: 7px; }
+  .dilemma-note strong { color: var(--color-text-primary); }
+  .lean-badge { display: inline-block; font-size: 9px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; background: #faeeda; color: #854f0b; border-radius: 4px; padding: 2px 7px; margin-left: 6px; vertical-align: middle; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <p class="hero-subtitle">Summer Holiday 2026</p>
+  <h1 class="hero-title">Nerja, <span>España</span></h1>
+  <div class="hero-dates">9 – 16 September 2026 &nbsp;·&nbsp; 7 nights &nbsp;·&nbsp; 2 people</div>
+</div>
+<svg class="wave" viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;background:transparent;">
+  <path d="M0 48 L0 24 Q360 0 720 24 Q1080 48 1440 24 L1440 48 Z" fill="#ffffff"/>
+</svg>
+
+<div class="section">
+
+  <!-- PLAN SIMULATION AT TOP -->
+  <p class="section-label" style="margin-top:1.5rem;">📋 Where we're at — preliminary plan</p>
+  <div style="background:linear-gradient(135deg,rgba(26,74,107,0.05) 0%,rgba(250,199,117,0.1) 100%);border:1px solid rgba(250,199,117,0.35);border-radius:var(--border-radius-lg);padding:18px;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;">
+      <div style="background:white;border-radius:8px;padding:12px;border:1px solid rgba(15,110,86,0.25);">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:5px;">
+          <div style="font-size:10px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--color-text-tertiary);">✈ Flight</div>
+          <span style="font-size:9px;font-weight:600;letter-spacing:1px;text-transform:uppercase;background:#e1f5ee;color:#0f6e56;border-radius:4px;padding:2px 6px;">chosen</span>
+        </div>
+        <div style="font-size:15px;font-weight:500;color:var(--color-text-primary);">LOT Polish Airlines</div>
+        <div style="font-size:12px;color:var(--color-text-secondary);margin-top:3px;">zł 986/person · with 23kg bag</div>
+        <div style="font-size:11px;color:var(--color-text-tertiary);margin-top:2px;">Depart 10:20 · return 19:25</div>
+      </div>
+      <div style="background:white;border-radius:8px;padding:12px;border:1px solid rgba(15,110,86,0.25);">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:5px;">
+          <div style="font-size:10px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--color-text-tertiary);">🏡 Stay</div>
+          <span style="font-size:9px;font-weight:600;letter-spacing:1px;text-transform:uppercase;background:#e1f5ee;color:#0f6e56;border-radius:4px;padding:2px 6px;">chosen</span>
+        </div>
+        <div style="font-size:15px;font-weight:500;color:var(--color-text-primary);">Apartamentos Rosamarina</div>
+        <div style="font-size:12px;color:var(--color-text-secondary);margin-top:3px;">zł 900/person · 7 nights</div>
+        <div style="font-size:11px;color:var(--color-text-tertiary);margin-top:2px;">Rating 8.9 · shared pool</div>
+      </div>
+    </div>
+
+    <!-- CAR — OPEN DECISION -->
+    <div style="background:white;border-radius:8px;padding:14px;border:1.5px dashed #b8cfe0;margin-bottom:14px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div style="font-size:10px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--color-text-tertiary);">🚗 Car rental</div>
+          <span style="font-size:9px;font-weight:600;letter-spacing:1px;text-transform:uppercase;background:#eef3f8;color:#1a4a6b;border-radius:4px;padding:2px 6px;">to decide</span>
+        </div>
+        <div style="font-size:11px;color:var(--color-text-tertiary);">7 days · Málaga</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <div style="background:#eef3f8;border-radius:6px;padding:10px 12px;border:0.5px solid #b8cfe0;">
+          <div style="font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#1a4a6b;margin-bottom:4px;">Option A — higher deductible</div>
+          <div style="font-size:18px;font-weight:500;color:var(--color-text-primary);">zł 547.50<span style="font-size:11px;font-weight:400;color:var(--color-text-tertiary);">/pp</span></div>
+          <div style="font-size:10px;color:var(--color-text-tertiary);margin-top:3px;">Deposit: ~6,415 PLN blocked</div>
+        </div>
+        <div style="background:#f3f0f8;border-radius:6px;padding:10px 12px;border:0.5px solid #c8bede;">
+          <div style="font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#5a3f8a;margin-bottom:4px;">Option B — lower deductible</div>
+          <div style="font-size:18px;font-weight:500;color:var(--color-text-primary);">zł 717<span style="font-size:11px;font-weight:400;color:var(--color-text-tertiary);">/pp</span></div>
+          <div style="font-size:10px;color:var(--color-text-tertiary);margin-top:3px;">Deposit: ~1,030 PLN blocked</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOTALS -->
+    <div style="border-top:0.5px solid var(--color-border-tertiary);padding-top:13px;">
+      <div style="font-size:10px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--color-text-tertiary);margin-bottom:8px;">Total per person</div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px;">
+        <span style="font-size:12px;color:var(--color-text-secondary);">Flight + stay (decided)</span>
+        <span style="font-size:17px;font-weight:500;color:var(--color-text-primary);">zł 1,886</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;padding:7px 10px;background:rgba(26,74,107,0.05);border-radius:6px;margin-bottom:4px;">
+        <span style="font-size:11px;color:var(--color-text-secondary);">+ Option A car (higher deductible)</span>
+        <span style="font-size:14px;font-weight:500;color:var(--color-text-primary);">zł 2,433.50</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;padding:7px 10px;background:rgba(90,63,138,0.05);border-radius:6px;">
+        <span style="font-size:11px;color:var(--color-text-secondary);">+ Option B car (lower deductible)</span>
+        <span style="font-size:14px;font-weight:500;color:var(--color-text-primary);">zł 2,603</span>
+      </div>
+    </div>
+  </div>
+
+  <p class="section-label" style="margin-top:2.5rem;">✈ Flights — price per person</p>
+  <div class="flight-compare">
+
+    <div class="airline-block">
+      <div class="airline-header">
+        <span class="airline-name">Wizzair · WIZZ Go</span>
+        <span class="airline-price-tag">zł 897.50</span>
+      </div>
+      <div class="flight-leg">
+        <div class="leg-date">Wed 9 Sep · WAW → AGP</div>
+        <div class="leg-row">
+          <span class="leg-time">13:35</span>
+          <div class="leg-mid">
+            <div class="leg-duration">4h 10m</div>
+            <div class="leg-line"></div>
+            <div class="leg-nonstop">NONSTOP</div>
+          </div>
+          <span class="leg-time" style="text-align:right;">17:45</span>
+        </div>
+      </div>
+      <div class="flight-leg">
+        <div class="leg-date">Wed 16 Sep · AGP → WAW</div>
+        <div class="leg-row">
+          <span class="leg-time">18:35</span>
+          <div class="leg-mid">
+            <div class="leg-duration">3h 55m</div>
+            <div class="leg-line"></div>
+            <div class="leg-nonstop">NONSTOP</div>
+          </div>
+          <span class="leg-time" style="text-align:right;">22:30</span>
+        </div>
+      </div>
+      <div class="airline-footer">
+        <span class="included">✓ 20kg checked bag included</span> · one bag covers both passengers
+      </div>
+    </div>
+
+    <div class="airline-block">
+      <div class="airline-header">
+        <span class="airline-name">LOT Polish Airlines</span>
+        <span class="airline-price-tag">zł 911</span>
+      </div>
+      <div class="flight-leg">
+        <div class="leg-date">Wed 9 Sep · WAW → AGP</div>
+        <div class="leg-row">
+          <span class="leg-time">10:20</span>
+          <div class="leg-mid">
+            <div class="leg-duration">4h 10m</div>
+            <div class="leg-line"></div>
+            <div class="leg-nonstop">NONSTOP</div>
+          </div>
+          <span class="leg-time" style="text-align:right;">14:30</span>
+        </div>
+      </div>
+      <div class="flight-leg">
+        <div class="leg-date">Wed 16 Sep · AGP → WAW</div>
+        <div class="leg-row">
+          <span class="leg-time">15:30</span>
+          <div class="leg-mid">
+            <div class="leg-duration">3h 55m</div>
+            <div class="leg-line"></div>
+            <div class="leg-nonstop">NONSTOP</div>
+          </div>
+          <span class="leg-time" style="text-align:right;">19:25</span>
+        </div>
+      </div>
+      <div class="airline-footer" style="line-height:1.6;">
+        <span class="not-included">✗ No checked bag by default</span> · cabin luggage only<br>
+        <span style="color:var(--color-text-secondary);">+ zł 75/person → adds 23kg checked bag each</span><br>
+        <span style="color:var(--color-text-info);font-weight:500;">With luggage: zł 986/person total</span>
+      </div>
+    </div>
+
+  </div>
+  <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:9px 14px;font-size:11px;color:var(--color-text-tertiary);margin-top:8px;line-height:1.6;">
+    Wizzair includes one shared 20kg bag. LOT is zł 13.50 more/person base, but adding a 23kg checked bag per person (+zł 75/person) brings it to zł 986/person — a total of zł 88.50 more per person than Wizzair, for better flight times and a proper 23kg bag each.
+  </div>
+
+  <p class="section-label" style="margin-top:2rem;">🏡 Accommodation — 7 nights, price per person</p>
+  <div class="accomm-grid">
+
+    <div class="accomm-card">
+      <div class="photo-strip">
+        <img src="https://i.ibb.co/k6KQW2BY/Screenshot-2026-03-26-at-13-21-53.png" alt="Pool and view" />
+        <img src="https://i.ibb.co/wF3NNkgY/Screenshot-2026-03-26-at-13-22-07.png" alt="Balcony view" />
+        <img src="https://i.ibb.co/d0f2rxBQ/Screenshot-2026-03-26-at-13-22-17.png" alt="Interior" />
+      </div>
+      <div class="accomm-body">
+        <span class="accomm-badge badge-budget">Budget pick</span>
+        <div class="accomm-name">Apartamentos Rosamarina</div>
+        <div class="accomm-loc">📍 Frigiliana · 10 min to Nerja beaches</div>
+        <div class="accomm-features">
+          <span class="feature-pill">Shared pool</span>
+          <span class="feature-pill">Balcony</span>
+          <span class="feature-pill">Mountain + sea views</span>
+          <span class="feature-pill">Full kitchen</span>
+          <span class="feature-pill">Free WiFi</span>
+        </div>
+        <div class="accomm-price">zł 900 <span class="accomm-price-sub">/ person</span></div>
+        <div class="accomm-price-sub" style="margin-top:2px;">Rating 8.9 · Rustic Andalusian style</div>
+        <a href="https://www.booking.com/hotel/es/apartamentos-rosamarina.en-gb.html" class="accomm-link">View on Booking.com ↗</a>
+      </div>
+    </div>
+
+    <div class="accomm-card premium">
+      <div class="photo-strip-2">
+        <img src="https://i.ibb.co/ccHcgV8g/Screenshot-2026-03-26-at-13-21-44.png" alt="Private pool terrace" />
+        <img src="https://i.ibb.co/hJFxgB79/Screenshot-2026-03-26-at-13-21-23.png" alt="Outdoor kitchen" />
+      </div>
+      <div class="accomm-body">
+        <span class="accomm-badge badge-premium">Premium pick</span>
+        <div class="accomm-name">Entire rental unit in Frigiliana, Spain</div>
+        <div class="accomm-loc">📍 Frigiliana · 5 min walk to old town</div>
+        <div class="accomm-features">
+          <span class="feature-pill">Private pool</span>
+          <span class="feature-pill">Outdoor kitchen</span>
+          <span class="feature-pill">BBQ</span>
+          <span class="feature-pill">Terrace</span>
+          <span class="feature-pill">AC</span>
+          <span class="feature-pill">Boho style</span>
+        </div>
+        <div class="accomm-price">zł 1,500 <span class="accomm-price-sub">/ person</span></div>
+        <div class="accomm-meta">
+          👥 3 guests &nbsp;·&nbsp; 🛏 2 bedrooms, 3 beds &nbsp;·&nbsp; 🚿 1.5 baths<br>
+          ⭐ 5.0 &nbsp;·&nbsp; 3 reviews
+        </div>
+        <a href="https://www.airbnb.com/rooms/1362197292716346759" class="accomm-link">View on Airbnb ↗</a>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="section-label" style="margin-top:2rem;">🚗 Car rental — 7 days, price per person</p>
+  <div class="car-grid">
+    <div class="car-card">
+      <div class="car-label">Higher deductible option</div>
+      <div class="car-price">zł 547.50</div>
+      <div class="car-note">Deposit held: ~6,415 PLN equivalent</div>
+    </div>
+    <div class="car-card">
+      <div class="car-label">Lower deductible option</div>
+      <div class="car-price">zł 717</div>
+      <div class="car-note">Deposit held: ~1,030 PLN equivalent</div>
+    </div>
+  </div>
+
+  <p class="section-label" style="margin-top:2rem;">💶 Cost comparison — all options, per person</p>
+  <table class="options-table">
+    <thead>
+      <tr>
+        <th>Option</th>
+        <th>Stay</th>
+        <th>Car</th>
+        <th>Flights</th>
+        <th>Total / person</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="best">
+        <td>Budget <span class="rec-badge">cheapest</span></td>
+        <td>900</td>
+        <td>547.50</td>
+        <td>897.50</td>
+        <td class="total-cell">zł 2,345</td>
+      </tr>
+      <tr>
+        <td>Budget stay + LOT (no bag)</td>
+        <td>900</td>
+        <td>547.50</td>
+        <td>911</td>
+        <td class="total-cell">zł 2,358.50</td>
+      </tr>
+      <tr class="plan-row">
+        <td>Budget stay + LOT + luggage <span class="plan-badge">📋 current plan</span></td>
+        <td>900</td>
+        <td>TBD</td>
+        <td>986</td>
+        <td class="total-cell">zł 1,886 + car</td>
+      </tr>
+      <tr>
+        <td>Premium stay + Wizz</td>
+        <td>1,500</td>
+        <td>547.50</td>
+        <td>897.50</td>
+        <td class="total-cell">zł 2,945</td>
+      </tr>
+      <tr>
+        <td>Premium stay + LOT (no bag)</td>
+        <td>1,500</td>
+        <td>547.50</td>
+        <td>911</td>
+        <td class="total-cell">zł 2,958.50</td>
+      </tr>
+      <tr>
+        <td>Premium stay + LOT + luggage</td>
+        <td>1,500</td>
+        <td>547.50</td>
+        <td>986</td>
+        <td class="total-cell">zł 3,033.50</td>
+      </tr>
+      <tr>
+        <td>Budget stay + low deposit car</td>
+        <td>900</td>
+        <td>717</td>
+        <td>897.50</td>
+        <td class="total-cell">zł 2,514.50</td>
+      </tr>
+      <tr>
+        <td>Everything upgraded</td>
+        <td>1,500</td>
+        <td>717</td>
+        <td>986</td>
+        <td class="total-cell">zł 3,203</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <!-- DILEMMAS -->
+  <p class="section-label" style="margin-top:2.5rem;">🤔 Decisions to make</p>
+  <div class="dilemma-stack">
+
+    <div class="dilemma-card">
+      <div class="dilemma-header">
+        <div class="dilemma-number">1</div>
+        <div class="dilemma-title">✈ Which flight — Wizzair vs LOT?</div>
+      </div>
+      <div class="dilemma-body">
+        <div class="dilemma-vs">
+          <div class="dilemma-option opt-a-plan">
+            <div class="dilemma-option-label">LOT — leaning this way ✓</div>
+            <p>Depart 10:20 → land Málaga 14:30. Back home by 19:25. Full afternoon on arrival day, relaxed return. Add 23kg bag per person for +zł 75/person → total zł 986/person.</p>
+          </div>
+          <div class="dilemma-option opt-b">
+            <div class="dilemma-option-label">Wizzair — alternative</div>
+            <p>Later departure (13:35), arrive 17:45. Return lands at 22:30 — late night. Includes one shared 20kg checked bag. zł 897.50/person.</p>
+          </div>
+        </div>
+        <div class="dilemma-note">
+          <strong>The core trade-off:</strong> LOT gives better hours on both ends — a whole extra afternoon on day 1, home by dinner on the last day. Adding a 23kg checked bag each (+zł 75pp) costs zł 88.50 more per person than Wizzair, but gives each person their own full luggage allowance. <strong>Current lean: LOT with checked luggage.</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="dilemma-card">
+      <div class="dilemma-header">
+        <div class="dilemma-number">2</div>
+        <div class="dilemma-title">🏡 Accommodation — save or splurge?</div>
+      </div>
+      <div class="dilemma-body">
+        <div class="dilemma-vs">
+          <div class="dilemma-option opt-a-plan">
+            <div class="dilemma-option-label">Rosamarina — leaning this way ✓</div>
+            <p>Rating 8.9, shared pool, balcony with mountain & sea views. Rustic Andalusian style. Use the savings for restaurants, day trips, or activities.</p>
+          </div>
+          <div class="dilemma-option opt-b">
+            <div class="dilemma-option-label">Frigiliana rental — private luxury</div>
+            <p>5.0 ⭐ (3 reviews). Private pool, outdoor kitchen, BBQ terrace. 2 bedrooms, 3 beds — your own space all week. Worth it if the pool matters.</p>
+          </div>
+        </div>
+        <div class="dilemma-note">
+          <strong>The core trade-off:</strong> The premium unit costs zł 600 more per person (zł 1,200 total for the trip) but gives you a private pool and a genuinely special base. Rosamarina is solid value — shared pool, great views, well-reviewed — and the savings free up budget for experiences. Key question: how much of your time do you see yourselves at "home base" vs out exploring?
+        </div>
+      </div>
+    </div>
+
+    <div class="dilemma-card">
+      <div class="dilemma-header">
+        <div class="dilemma-number">3</div>
+        <div class="dilemma-title">🚗 Car rental — deductible & deposit</div>
+      </div>
+      <div class="dilemma-body">
+        <div class="dilemma-vs">
+          <div class="dilemma-option opt-a">
+            <div class="dilemma-option-label">Lower deductible — zł 547.50pp</div>
+            <p>Deposit hold of ~1,030 PLN on your card. Less cash tied up. Lower financial exposure if something goes wrong.</p>
+          </div>
+          <div class="dilemma-option opt-b">
+            <div class="dilemma-option-label">Higher deductible — zł 717pp</div>
+            <p>Deposit hold of ~6,415 PLN on your card. Over zł 5,000 more blocked for the week. You pay first, then claim reimbursement.</p>
+          </div>
+        </div>
+        <div class="dilemma-note">
+          <strong>Why the deposit matters even with full insurance:</strong> Even if you have comprehensive travel or car insurance that covers damage, rental companies charge the full deductible amount to your card <em>at the moment of any incident</em> — before any insurance claim is processed. With the higher deductible option, that means ~6,415 PLN blocked or charged upfront. You'd get it back eventually through a claim, but it can take weeks and requires paperwork. With the lower deductible, your maximum out-of-pocket exposure before reimbursement is only ~1,030 PLN. Unless the higher option comes with a meaningfully better or newer car, the lower deductible is almost always the smarter choice — less cash tied up, less stress if anything happens.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-note" style="margin-top:1.5rem;">
+    <strong style="font-size:13px;font-weight:500;">🌅 About Nerja</strong><br>
+    A beautiful Costa del Sol gem — known for the Balcón de Europa, Burriana Beach, the Nerja Caves, and whitewashed streets. September is ideal: warm 26–28°C, fewer crowds than peak summer, sea still perfect for swimming. Frigiliana nearby is one of Spain's most beautiful white villages.
+  </div>
+
+</div>
+</body>
+</html>
